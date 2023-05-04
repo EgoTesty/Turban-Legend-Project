@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://tau8eho40gqa"]
+
+[ext_resource type="Texture2D" uid="uid://camuaoq0iyryq" path="res://tumblr_static_tumblr_static_2h8k2xyts4o488w8wo0kg8o4g_focused_v3.png" id="1_k0k3w"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_bfpn2"]
+script/source = "using Godot;
+using System;
+
+public partial class resize : Sprite2D
+{
+}
+"
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+scroll_base_scale = Vector2(1, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+texture_repeat = 2
+motion_scale = Vector2(1, 0)
+motion_mirroring = Vector2(1366, 567)
+
+[node name="trippy_image" type="Sprite2D" parent="ParallaxLayer"]
+texture_filter = 1
+texture = ExtResource("1_k0k3w")
+centered = false
+script = SubResource("CSharpScript_bfpn2")

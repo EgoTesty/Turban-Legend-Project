@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://oafda1w4rurb"]
+
+[ext_resource type="Script" path="res://Scripts/main_menu.cs" id="1_bv5jc"]
+[ext_resource type="PackedScene" uid="uid://tau8eho40gqa" path="res://parallax_background.tscn" id="1_h38po"]
+[ext_resource type="Script" path="res://Scripts/Infinite_Scrolling.cs" id="2_rqqkn"]
+[ext_resource type="Texture2D" uid="uid://c4725h2j406c6" path="res://Props/TL logo final.png" id="3_p6m66"]
+[ext_resource type="AudioStream" uid="uid://b8orv1uct24dd" path="res://Music/At the Price of Oblivion - 01 Dark Rose⧸Green Sun [XoFbJllomCo].ogg" id="6_ojoyq"]
+
+[node name="Main_Menu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_bv5jc")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_h38po")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(2, 2)
+script = ExtResource("2_rqqkn")
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+offset_right = 91.0
+offset_bottom = 136.0
+scale = Vector2(6.38818, 2.42806)
+color = Color(1, 1, 1, 0)
+
+[node name="logo" type="Sprite2D" parent="Camera2D"]
+position = Vector2(169, 85)
+texture = ExtResource("3_p6m66")
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera2D"]
+offset_left = 34.0
+offset_top = 177.0
+offset_right = 125.0
+offset_bottom = 313.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/MarginContainer"]
+layout_mode = 2
+
+[node name="START" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "START"
+alignment = 0
+
+[node name="CONTINUE" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CONTINUE"
+alignment = 0
+
+[node name="SETTINGS" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "SETTINGS"
+alignment = 0
+
+[node name="QUIT" type="Button" parent="Camera2D/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "QUIT"
+alignment = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ojoyq")
+volume_db = 1.0
+autoplay = true
+
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/START" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/CONTINUE" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/SETTINGS" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Camera2D/MarginContainer/VBoxContainer/QUIT" to="." method="_on_quit_pressed"]
